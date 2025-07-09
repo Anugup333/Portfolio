@@ -1,0 +1,62 @@
+{% extends "basic.html" %}
+
+{% block title %} Feedback {% endblock title %}
+
+{% block body %}
+
+ 
+<div class="container mt-5">
+    <h2 class="text-center mb-4">💬 User Feedback</h2>
+
+    <!-- Feedback Form -->
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="mb-3">
+            {{ form.name.label_tag }} 
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label_tag }} 
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.feedback.label_tag }} 
+            {{ form.feedback }}
+            {{ form.feedback.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</div>
+
+  <br>
+  <hr>
+  <!-- Display Feedbacks -->
+  <div class="row">
+    {% for feedback in feedbacks %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ feedback.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ feedback.email }}</h6>
+          <p class="card-text">{{ feedback.feedback }}</p>
+          <p class="text-muted small mb-0">{{ feedback.created_at|date:"M d, Y H:i" }}</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+      <p class="text-center text-muted">No feedback yet. Be the first!</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock body %}
