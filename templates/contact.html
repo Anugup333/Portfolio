@@ -1,0 +1,44 @@
+{% extends "basic.html" %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block body %}
+  
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Contact Us</h2>
+
+    {% if success %}
+    <div class="alert alert-success text-center" role="alert">
+        <strong>Thank you!</strong> Your message has been sent successfully.
+    </div>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="mb-3">
+            {{ form.name.label_tag }} 
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label_tag }} 
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.phonenumber.label_tag }} 
+            {{ form.phonenumber }}
+            {{ form.phonenumber.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.description.label_tag }} 
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</div>
+
+{% endblock body %}
