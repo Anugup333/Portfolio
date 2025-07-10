@@ -1,0 +1,30 @@
+{% extends "basic.html" %}
+
+{% block title %} Resume {% endblock title %}
+
+{% block body %}
+
+  
+{% if resume %}
+<div class="card shadow-sm mb-4 mt-5">
+  <div class="card-body">
+    <h4 class="card-title mb-3">📄 Current Resume</h4>
+
+    <div class="d-flex gap-3">
+      <a href="{{ resume.resume.url }}" target="_blank" class="btn btn-outline-primary">
+        <i class="bi bi-eye"></i> View in New Tab
+      </a>
+      <a href="{{ resume.resume.url }}" download class="btn btn-outline-success">
+        <i class="bi bi-download"></i> Download Resume
+      </a>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="alert alert-warning">
+  No resume uploaded yet.
+</div>
+{% endif %}
+
+
+{% endblock body %}

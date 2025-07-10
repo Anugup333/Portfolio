@@ -1,0 +1,49 @@
+{% extends "basic.html" %}
+
+{% block title %} Project {% endblock title %}
+
+{% block body %}
+  <div class="container mt-5">
+  <h2>My Projects</h2>
+  <div class="row g-4">
+    {% for project in projects %}
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4>{{ project.title }}</h4>
+            <p><strong>Duration:</strong> {{ project.created_from }} to {{ project.created_to }}</p>
+            <div class="mb-2">
+              {{ project.description|safe }}
+            </div>
+            <div class="mb-2">
+              <strong>Technologies:</strong><br>
+              {{ project.technologies|safe }}
+            </div>
+            {% if project.demo_video %}
+            {% if project.demo_video.url|slice:"-3:" == "mp4"  %}
+              <video controls width="100%" class="mt-2">
+                <source src="{{ project.demo_video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% else %}
+              <img controls width="100%" class="mt-2" src="{{ project.demo_video.url }}" alt="">
+            {% endif %}
+            {% endif %}
+            <div class="mt-3">
+              {% if project.github_link %}
+                <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-outline-dark">GitHub</a>
+              {% endif %}
+              {% if project.live_demo_link %}
+                <a href="{{ project.live_demo_link }}" target="_blank" class="btn btn-sm btn-outline-primary">Live Demo</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No projects yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock body %}
