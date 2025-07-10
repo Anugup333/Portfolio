@@ -40,3 +40,34 @@ class Project(models.Model):
 def delete_demo_video_file(sender,instance,**kwargs):
     if instance.demo_video and os.path.isfile(instance.demo_video.path):
         os.remove(instance.demo_video.path)
+
+
+
+class About(models.Model):
+    name = models.CharField(max_length=100)
+    profile_picture = models.ImageField(upload_to='about_me/', blank=True, null=True)
+    title = models.CharField(max_length=150)  # e.g., "UI/UX Designer & Web Developer"
+    bio = models.TextField()
+    location = models.CharField(max_length=100)
+    dob = models.DateField()
+    phone = models.CharField(max_length=10)
+    email = models.EmailField()
+    degree = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class Certification(models.Model):
+    title = models.CharField(max_length=200)
+    issuer = models.CharField(max_length=100)
+    issue_date = models.DateField()
+    certificate_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title

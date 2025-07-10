@@ -31,3 +31,16 @@ class ProjectAdmin(admin.ModelAdmin):
         'created_from',
         'created_to',
     )
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ('name','profile_picture', 'title','bio', 'email', 'phone', 'location', 'dob', 'degree')
+
+
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    list_display = ('title','issuer','issue_date','certificate_url')

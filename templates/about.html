@@ -3,5 +3,82 @@
 {% block title %} About {% endblock title %}
 
 {% block body %}
-  <h1>About Us</h1>
+  <!-- about.html -->
+<section class="container py-5" id="about">
+  {% if about %}
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">About</h2>
+    <hr>
+  </div>
+  <div class="row align-items-center">
+    <!-- Profile Picture -->
+    {% if about.profile_picture %}
+    <div class="col-md-4 text-center">
+      <img src="{{ about.profile_picture.url }}" alt="Profile" class="img-fluid rounded-circle shadow" style="max-width: 200px;">
+    </div>
+    {% endif %}
+    <!-- Details -->
+    <div class="col-md-8 mt-4">
+      <h4 class="fw-bold text-center">{{ about.title }}</h4>
+      <br>
+      <p><i>{{ about.bio }}</i></p>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Birthday: </strong> {{ about.dob }}</p>
+          <p><strong>Phone: </strong> {{ about.phone }}</p>
+          <p><strong>City: </strong> {{ about.location }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Age: </strong> {{ about.dob|timesince }} old</p>
+          <p><strong>Degree: </strong> {{ about.degree }}</p>
+          <p><strong>Email: </strong> {{ about.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Skills -->
+  <hr class="my-4">
+  <div class=" text-center mb-4">
+    <h4 class="fw-bold" >Skills</h4>
+  </div>
+  <hr>
+  <div class="row">
+    {% for skill in skills %}
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body text-center">
+          <h6 class="card-title">{{ skill.name }}</h6>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <hr>
+
+<!-- Certifications Section -->
+  <h3 class="fw-bold text-center mb-4 mt-4">Certifications</h3>
+  <hr>
+  <div class="row">
+    {% for cert in certifications %}
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ cert.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Issued by {{ cert.issuer }}</h6>
+          <p class="card-text"><strong>Issued:</strong> {{ cert.issue_date }}</p>
+          {% if cert.certificate_url %}
+            <a href="{{ cert.certificate_url }}" target="_blank" class="btn btn-outline-primary btn-sm">View Certificate</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+</section>
+
 {% endblock body %}
