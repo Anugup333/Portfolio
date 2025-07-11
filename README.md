@@ -1,6 +1,3 @@
-# 💼 Personal Portfolio Website
-
-A fully responsive and modern **personal portfolio website** built with **Django** and **Bootstrap 5**, featuring a clean design, social media links, and a feedback submission system with dynamic display. This site allows visitors to know more about me, view my projects, and share feedback.
 
 # 💼 Personal Portfolio Website
 
@@ -75,14 +72,6 @@ This portfolio website is not just a static resume — it is a **content-managed
 | Editor         | CKEditor (RichText)       |
 | Database       | SQLite (development)      |
 | Hosting        | [Render](https://render.com) |
-| Admin Panel    | Django Admin              |
-| Media Storage  | Local (`media/` folder)   |
-| Forms          | Django ModelForm          |
-| Icons          | Bootstrap Icons           |
 
 ---
-
-## 🧩 Folder Structure
-
-
 
